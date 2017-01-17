@@ -1,0 +1,82 @@
+// ===========================================================================
+// MIXINS
+// ===========================================================================
+
+// ------------------------
+// SELECTION
+// ------------------------
+
+// The 'wb-selection' mixin allows styling text selection.
+
+@mixin wb-selection {
+  ::-webkit-selection{ @content; }
+  ::-moz-selection{ @content; }
+  ::selection{ @content; }
+}
+
+// ------------------------
+// PLACEHOLDER
+// ------------------------
+
+@mixin wb-input-placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+}
+
+// ------------------------
+// CLEAR FLOAT
+// ------------------------
+
+// The 'wb-clear-float' mixin is useful for clearing floated children without
+// using the 'overflow: hidden' rule on the element.
+
+@mixin wb-clear-float() {
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+// ------------------------
+// ICON
+// ------------------------
+
+// The 'wb-icon' mixin adds the default styles for centering an
+// icon inside an element. You would probably want to use it
+// inside a pseudo element.
+
+@mixin wb-icon($icon-size: 14px, $icon-width: 1em, $icon-height: 1em, $font-name: WBIcons) {
+  display: block;
+  width: $icon-width;
+  height: $icon-height;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.5 * $icon-height;
+  margin-left: -0.5 * $icon-width;
+  speak: none;
+  font: normal #{$icon-size}/#{1} $font-name;
+  text-align: center;
+}
+
+// ------------------------
+// BLOCK
+// ------------------------
+
+// The 'wb-block' mixin creates vertical margins for
+// block elements and handles eliminating those margins for
+// first/last elements.
+
+@mixin wb-block($margin-before: null, $margin-after: $margin-before) {
+  @if $margin-before != null {
+    display: block;
+    margin: $margin-before 0 $margin-after;
+
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+  }
+}
